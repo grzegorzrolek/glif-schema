@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:complexType name="advance">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Horizontal and vertical metrics.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="width" type="xs:decimal"/>
+		<xs:attribute name="height" type="xs:decimal"/>
+	</xs:complexType>
+	
+</xs:schema>

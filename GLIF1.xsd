@@ -1,183 +1,36 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
-	<!-- SIMPLE DATATYPES with DOCUMENTATION -->
-	
-	<xs:attributeGroup name="transformation">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the base glyph. The default matrix is [1 0 0 1 0 0], the identity transformation.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="xScale" type="xs:decimal" default="1"/>
-		<xs:attribute name="xyScale" type="xs:decimal" default="0"/>
-		<xs:attribute name="yxScale" type="xs:decimal" default="0"/>
-		<xs:attribute name="yScale" type="xs:decimal" default="1"/>
-		<xs:attribute name="xOffset" type="xs:decimal" default="0"/>
-		<xs:attribute name="yOffset" type="xs:decimal" default="0"/>
-	</xs:attributeGroup>
-	
-	<xs:simpleType name="pointSmoothness">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">This attribute can only be given when type indicates the point is on-curve. When set to yes, it signifies that a smooth curvature should be maintained at this point, either as a curve point or a tangent point in Fontographer terms.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="yes"/>
-			<xs:enumeration value="no"/>
-		</xs:restriction>													
-	</xs:simpleType>
-	
-	<xs:simpleType name="pointType">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">The point and/or segment type.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="move">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">A point of this type MUST be the first in a contour. The reverse is not true: a contour does not necessarily start with a move point. When a contour does start with a move point, it signifies the beginning of an open contour. A closed contour does not start with a move and is defined as a cyclic list of points, with no predominant start point. There is always a next point and a previous point. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="line">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">Draw a straight line from the previous point to this point. The previous point may be a move, a line, a curve or a qcurve, but not an offcurve.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="offcurve">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">This point is part of a curve segment, that goes up to the next point that is either a curve or a qcurve.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="curve">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">Draw a cubic bezier curve from the last non-offcurve point to this point. If the number of offcurve points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn. If it is larger than 2, a series of cubic bezier segments are drawn, as defined by the Super Bezier algorithm.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="qcurve">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">Similar to curve, but uses quadratic curves, using the TrueType “implied on-curve points” principle.	</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	
-	<!-- STRUCTURELESS COMPLEX DATATYPES with DOCUMENTATION -->
-		
-	<xs:complexType name="glyph">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a .glif extension.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="name" type="xs:token">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The name of the glyph. The name attribute has limited uses in this version. The contents.plist file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the name attribute is probably best ignored, since manual editing may have caused a mismatch with the glyph name as stored in contents.plist, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="format" type="xs:decimal">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The format version. 1 for this version.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-	
-	<xs:complexType name="advance">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Horizontal and vertical metrics.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="width" type="xs:decimal"/>
-		<xs:attribute name="height" type="xs:decimal"/>
-	</xs:complexType>
-	
-	<xs:complexType name="unicode">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Unicode code point. The first occurrence of this element defines the primary unicode value for glyph.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="hex" type="xs:hexBinary" use="required">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">A unicode code point as a hexadecimal number.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-	
-	<xs:complexType name="outline">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Outline description.</xs:documentation>
-		</xs:annotation>
-	</xs:complexType>
-	
-	<xs:complexType name="component">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Insert another glyph as part of the outline.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="base" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">Name of the base glyph.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attributeGroup ref="transformation"/>
-	</xs:complexType>
-	
-	<xs:complexType name="contour">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Contour description.</xs:documentation>
-		</xs:annotation>
-	</xs:complexType>
-	
-	<xs:complexType name="point">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">An attributed coordinate pair.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="x" type="xs:decimal" use="required"/>
-		<xs:attribute name="y" type="xs:decimal" use="required"/>
-		<xs:attribute name="type" type="pointType" default="offcurve"/>
-		<xs:attribute name="smooth" type="pointSmoothness" default="no"/>
-		<xs:attribute name="name" type="xs:string">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-		
-	<xs:complexType name="lib">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Custom data storage.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="xs:anyType"/>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<!-- STRUCTURE -->
+	<xs:include schemaLocation="transformation.xsd"/>
+	<xs:include schemaLocation="point.xsd"/>
+	<xs:include schemaLocation="contour.xsd"/>
+	<xs:include schemaLocation="component.xsd"/>
+	<xs:include schemaLocation="outline.xsd"/>
+	<xs:include schemaLocation="lib.xsd"/>
+	<xs:include schemaLocation="unicode.xsd"/>
+	<xs:include schemaLocation="advance.xsd"/>
 	
 	<xs:element name="glyph">
 		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="glyph">
-					<xs:sequence>
-						<xs:element name="advance" type="advance" minOccurs="0"/>
-						<xs:element name="unicode" type="unicode" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element name="outline" minOccurs="0">
-							<xs:complexType>
-								<xs:complexContent>
-									<xs:extension base="outline">
-										<xs:sequence>	
-											<xs:element name="component" type="component" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="contour" minOccurs="0" maxOccurs="unbounded">
-												<xs:complexType>
-													<xs:complexContent>
-														<xs:extension base="contour">
-															<xs:sequence>	
-																<xs:element name="point" type="point" minOccurs="0" maxOccurs="unbounded"/>
-															</xs:sequence>
-														</xs:extension>
-													</xs:complexContent>
-												</xs:complexType>
-											</xs:element>
-										</xs:sequence>
-									</xs:extension>
-								</xs:complexContent>
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="lib" type="lib" minOccurs="0"/>	
-					</xs:sequence>
-				</xs:extension>
-			</xs:complexContent>
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a .glif extension. A GLIF may represent either an outline glyph or an image glyph. If a GLIF contains an outline element within the top level glyph element, the glyph is an outline glyph. If a GLIF contains one or more image elements within the top level glyph element, the glyph is an image glyph. Within a layer, if no GLIF files contain either an outline or an image element within the top level glyph elements, the layer is an outline layer. Outline glyphs must not contain images. Image glyphs must not contain outlines.</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="advance" type="advance" minOccurs="0"/>
+				<xs:element name="unicode" type="unicode" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="outline" type="outline" minOccurs="0"/>
+				<xs:element name="lib" type="lib" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:token">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The name of the glyph. The name attribute has limited uses in this version. The contents.plist file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the name attribute is probably best ignored, since manual editing may have caused a mismatch with the glyph name as stored in contents.plist, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="format" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The format version.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	

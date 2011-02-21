@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:complexType name="guideline">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A reference guideline. The guideline extends along angle to infinity in both directions out of the point defined by x and y. If y and angle are omitted, the element represents a vertical guideline. If x and angle are omitted, the element represents a horizontal guideline. If y is omitted and angle if provided, y is zero. If x is omitted and angle is provided, x is zero.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="x" type="xs:decimal">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The ‘x’ coordinate. Optional if y is provided and angle is not provided.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="y" type="xs:decimal"/>
+		<xs:attribute name="angle">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The angle of the guideline. This must be a value between 0 and 360 in a clockwise direction.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="360"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">An arbitrary name for the guideline.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="color" type="color"/>
+	</xs:complexType>
+	
+</xs:schema>

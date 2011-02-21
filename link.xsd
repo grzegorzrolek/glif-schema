@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:complexType name="link">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A collection of point references. Links are arbitrary collections of point references. These can represent anything that can be described as a list of points—TrueType hints, Postscript hints, interpolation markers, etc. The GLIF specification does not define the behavior of links within a specific binary format. The link element may contain a type string that applications can use to define what a particular link represents.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="type" type="xs:string">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">An arbitrary string describing the type of link.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+</xs:schema>

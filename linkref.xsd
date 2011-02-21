@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:complexType name="linkref">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A reference to a particular point in the glyph.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="contour" type="xs:string">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The name of the contour being referenced. This corresponds to the name attribute of the contour element.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="point" type="xs:string">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The name of the point being referenced. This corresponds to the name attribute of the point element.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+</xs:schema>

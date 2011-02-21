@@ -5,13 +5,7 @@ This is an XML Schema for the Glyph Interchange Format, an XML representation of
 
 SCHEMA'S ARCHITECTURE
 
-The shape of this schema is determined by separation of documented datatypes and a bare element structure. This makes documentation readable and the structure clear. The schema is thus divided into following sections:
-
-1. Documented definitions of
-   A. custom simple types
-   B. complex types as childless entities, defined flat-wise, with their attributes only.
-
-2. Structure of elements as content extensions of the complex types defined earlier.
+Elements of both GLIF 1 & 2 Schemas are defined as independent, linked modules that are reused whenever possible. There's one restriction, though, that the extensions required by elements that have changed with the second version takes place inside the root element of the GLIF 2 Schema.
 
 
 CREDITS & COPYRIGHT NOTICE
