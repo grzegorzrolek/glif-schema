@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:simpleType name="note">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Note about the glyph. This element is a place for the user to define arbitrary text about the glyph. There is no standardized structure for the note apart from that it being the content of the note element.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	
+</xs:schema>

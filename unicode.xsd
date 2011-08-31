@@ -3,11 +3,11 @@
 	
 	<xs:complexType name="unicode">
 		<xs:annotation>
-			<xs:documentation xml:lang="en">Unicode code point. The first occurrence of this element defines the primary unicode value for glyph.</xs:documentation>
+			<xs:documentation xml:lang="en">Unicode code point. The first occurrence of this element defines the primary Unicode value for this glyph.</xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="hex" type="xs:hexBinary" use="required">
 			<xs:annotation>
-				<xs:documentation xml:lang="en">A unicode code point as a hexadecimal number.</xs:documentation>
+				<xs:documentation xml:lang="en">A unicode code point as a hexadecimal number. The string is case-insensitive and must contain the hex value without a prefix.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>

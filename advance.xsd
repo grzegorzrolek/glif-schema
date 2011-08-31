@@ -5,8 +5,16 @@
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Horizontal and vertical metrics.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute name="width" type="xs:decimal"/>
-		<xs:attribute name="height" type="xs:decimal"/>
+		<xs:attribute name="width" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The advance width. Optional if height is defined.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="height" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">The vertical advance. Optional if width is defined.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	
 </xs:schema>

@@ -3,22 +3,21 @@
 	
 	<xs:complexType name="image">
 		<xs:annotation>
-			<xs:documentation xml:lang="en">An image reference. This element has no child elements. However, a mask child element could be of use.</xs:documentation>
+			<xs:documentation xml:lang="en">An image reference. This optional element represents an image element in a glyph. The image should always be considered to be behind the outline element. All images must be in Portable Network Graphics (PNG) format.</xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="fileName" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation xml:lang="en">The image file name.</xs:documentation>
+				<xs:documentation xml:lang="en">The image file name, including any file extension, not an absolute or relative path in the file system.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="directory" type="xs:string">
+		<xs:attributeGroup ref="transformation">
 			<xs:annotation>
-				<xs:documentation xml:lang="en">The directory the image is stored in. If this is not given, the image must be stored in the images directory within the UFO.</xs:documentation>
+				<xs:documentation xml:lang="en">One image width unit equals one horizontal font unit and one image height unit equals one vertical font unit before xScale, xyScale, yxScale, yScale, xOffset, yOffset are applied.</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>
-		<xs:attributeGroup ref="transformation"/>
+		</xs:attributeGroup>
 		<xs:attribute name="color" type="color">
 			<xs:annotation>
-				<xs:documentation xml:lang="en">The color that should be applied to the image. If no color is provided, the image should be drawn using the colors stored in the image data.</xs:documentation>
+				<xs:documentation xml:lang="en">The color that should be applied to the image. The format follows the color definition standard. There are two places that the color for an image can be defined: the color attribute of the image element and the color defined in layerinfo.plist. The color defined in the image element's color attribute always takes precedence. If that is not defined and the color is defined for the layer, the layer's color should be used. If both of these are undefined, the image's colors, without modification, should be used unless an authoring tool has a default color for images. If a color is to be applied, the authoring tool should convert the image to grayscale and then apply the color. This modified version of the image must not be saved into the images directory.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
