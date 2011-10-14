@@ -16,21 +16,10 @@
 	
 	<xs:redefine schemaLocation="component.xsd">
 		<xs:complexType name="component">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">Insert another glyph as part of the outline. The base glyph referenced by a component may contain components. The base glyph must not create a circular reference to the glyph that contains the component. Components must only reference glyphs within the same layer that the component belongs to.</xs:documentation>
-			</xs:annotation>
 			<xs:complexContent>
 				<xs:extension base="component">
-					<xs:attribute name="name" type="xs:string">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Arbitrary name or label for this component. The name does not have to be unique within an outline.</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
-					<xs:attribute name="identifier" type="xs:string">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Unique identifier for the component. This attribute is not required and should only be added to components as needed. However, once an identifier has been assigned to a component it must not be unnecessarily removed or changed. Identifiers may be changed in incoming components during editing operations such as "paste," but they should be maintained unless a duplicate identifier will be created. The identifier value must be unique within all identifiers (including identifiers for elements other than components) in the glyph that the component belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist.</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
+					<xs:attribute name="name" type="xs:string"/>
+					<xs:attribute name="identifier" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -38,16 +27,9 @@
 	
 	<xs:redefine schemaLocation="contour.xsd">
 		<xs:complexType name="contour">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">Contour description. There is no requirement that a contour contain an on-curve point. If a contour contains only off-curve points the contour must be treated as a quadratic curve.</xs:documentation>
-			</xs:annotation>
 			<xs:complexContent>
 				<xs:extension base="contour">
-					<xs:attribute name="identifier" type="xs:string">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Unique identifier for the component. This attribute is not required and should only be added to contours as needed. However, once an identifier has been assigned to a contour it must not be unnecessarily removed or changed. Identifiers may be changed in incoming contours during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within all identifiers (including identifiers for elements other than contours) in the glyph that the contour belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist.</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
+					<xs:attribute name="identifier" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -57,11 +39,7 @@
 		<xs:complexType name="point">
 			<xs:complexContent>
 				<xs:extension base="point">
-					<xs:attribute name="identifier" type="xs:string">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Unique identifier for the point. This attribute is not required and should only be added to points as needed. However, once an identifier has been assigned to a point it must not be unnecessarily removed or changed. Identifiers may be changed in incoming points during editing operations such as "paste" and component decomposition, but they should be maintained unless a duplicate identifier will be created. Identifiers should also be retained when possible during outline manipulation operations such as path direction changes and remove overlap. The identifier value must be unique within all identifiers (including identifiers for elements other than poinys) in the glyph that the point belongs to but it is not required to be unique among the identifiers assigned in other glyphs, in any layerinfo.plist or in fontinfo.plist.</xs:documentation>
-						</xs:annotation>
-					</xs:attribute>
+					<xs:attribute name="identifier" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -71,9 +49,6 @@
 	
 	<xs:element name="glyph">
 		<xs:complexType>
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The Glyph Interchange Format (GLIF) is a simple and clear XML representation of a single glyph. GLIF files typically have a .glif extension.</xs:documentation>
-			</xs:annotation>
 			<xs:sequence>
 				<xs:element name="advance" type="advance" minOccurs="0"/>
 				<xs:element name="unicode" type="unicode" minOccurs="0" maxOccurs="unbounded"/>
@@ -84,20 +59,13 @@
 				<xs:element name="lib" type="lib" minOccurs="0"/>	
 			</xs:sequence>
 			<xs:attribute name="name">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">The name of the glyph. The name attribute has limited uses in this version. The contents.plist file maps glyph names to file names, and one of the reasons to do this is to avoid having to parse all files just to get at a list of available glyph names. When reading GLIF files, the name attribute should be ignored, since manual editing may have caused a mismatch with the glyph name as stored in contents.plist, as well as with the file name, which is an algorithmic transformation of the glyph name. This attribute may become more useful in future versions of GLIF.</xs:documentation>
-				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:token">
 						<xs:minLength value="1"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
-			<xs:attribute name="format" type="xs:decimal">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">The format version. 2 for this version.</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
+			<xs:attribute name="format" type="xs:decimal"/>
 		</xs:complexType>
 	</xs:element>
 	

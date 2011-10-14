@@ -2,9 +2,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<xs:complexType name="contour">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Contour description.</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="point" type="point" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>

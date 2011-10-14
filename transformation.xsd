@@ -2,9 +2,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<xs:attributeGroup name="transformation">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">xScale, xyScale, yxScale, yScale, xOffset, yOffset taken together in that order form an Affine transformation matrix, to be used to transform the image. The default matrix is [1 0 0 1 0 0], the identity transformation.</xs:documentation>
-		</xs:annotation>
 		<xs:attribute name="xScale" type="xs:decimal" default="1"/>
 		<xs:attribute name="xyScale" type="xs:decimal" default="0"/>
 		<xs:attribute name="yxScale" type="xs:decimal" default="0"/>

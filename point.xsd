@@ -2,57 +2,20 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<xs:complexType name="point">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">An attributed coordinate pair.</xs:documentation>
-		</xs:annotation>
-		<xs:attribute name="x" type="xs:decimal" use="required">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The 'x' coordinate.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="y" type="xs:decimal" use="required">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The 'y' coordinate.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
+		<xs:attribute name="x" type="xs:decimal" use="required"/>
+		<xs:attribute name="y" type="xs:decimal" use="required"/>
 		<xs:attribute name="type" default="offcurve">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">The point and/or segment type.</xs:documentation>
-			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:token">
-					<xs:enumeration value="move">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">A point of this type must be the first in a contour. The reverse is not true: a contour does not necessarily start with a move point. When a contour does start with a move point, it signifies the beginning of an open contour. A closed contour does not start with a move and is defined as a cyclic list of points, with no predominant start point. There is always a next point and a previous point. For this purpose the list of points can be seen as endless in both directions. The actual list of points can be rotated arbitrarily (by removing the first N points and appending them at the end) while still describing the same outline.</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="line">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Draw a straight line from the previous point to this point. The previous point must be a move, a line, a curve or a qcurve. It must not be an offcurve.</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="offcurve">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">This point is part of a curve segment that goes up to the next point that is either a curve or a qcurve.</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="curve">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Draw a cubic bezier curve from the last non-offcurve point to this point. The number of offcurve points can be zero, one or two. If the number of offcurve points is zero, a straight line is drawn. If it is one, a quadratic curve is drawn. If it is two, a regular cubic bezier is drawn.</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
-					<xs:enumeration value="qcurve">
-						<xs:annotation>
-							<xs:documentation xml:lang="en">Similar to curve, but uses quadratic curves, using the TrueType "implied on-curve points" principle.</xs:documentation>
-						</xs:annotation>
-					</xs:enumeration>
+					<xs:enumeration value="move"/>
+					<xs:enumeration value="line"/>
+					<xs:enumeration value="offcurve"/>
+					<xs:enumeration value="curve"/>
+					<xs:enumeration value="qcurve"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
 		<xs:attribute name="smooth" default="no">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">This attribute must only be given when type indicates the point is on-curve. When set to yes, it signifies that a smooth curvature should be maintained at this point, either as a curve point or a tangent point in Fontographer terms.</xs:documentation>
-			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:token">
 					<xs:enumeration value="yes"/>
@@ -60,11 +23,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<xs:attribute name="name" type="xs:string">
-			<xs:annotation>
-				<xs:documentation xml:lang="en">Arbitrary name or label for this point. The name does not have to be unique within a contour, nor within an outline.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
+		<xs:attribute name="name" type="xs:string"/>
 	</xs:complexType>
 	
 </xs:schema>
