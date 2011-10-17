@@ -5,7 +5,7 @@ This is an XML Schema for the Glyph Interchange Format, an XML representation of
 
 SCHEMA'S ARCHITECTURE
 
-Elements of both GLIF 1 & 2 Schemas are defined as independent, linked modules that are reused whenever possible. There's one restriction, though, that the extensions required by elements that have changed with the second version takes place inside the root element of the GLIF 2 Schema.
+Elements of both GLIF 1 & 2 Schemas are defined as independent, linked modules that are reused whenever possible. Modules of the GLIF 2 Schema that supersede the earlier format either include the old elements as is, or extend them if necessary.
 
 
 CREDITS & COPYRIGHT NOTICE

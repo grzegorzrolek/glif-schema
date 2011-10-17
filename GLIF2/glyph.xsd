@@ -11,41 +11,8 @@
 	<xs:include schemaLocation="unicode.xsd"/>
 	<xs:include schemaLocation="advance.xsd"/>
 	<xs:include schemaLocation="note.xsd"/>
-	
-	<!-- REDEFINITIONS ABOVE GLIF VERSION 1 ELEMENTS -->
-	
-	<xs:redefine schemaLocation="component.xsd">
-		<xs:complexType name="component">
-			<xs:complexContent>
-				<xs:extension base="component">
-					<xs:attribute name="name" type="xs:string"/>
-					<xs:attribute name="identifier" type="xs:string"/>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:redefine>
-	
-	<xs:redefine schemaLocation="contour.xsd">
-		<xs:complexType name="contour">
-			<xs:complexContent>
-				<xs:extension base="contour">
-					<xs:attribute name="identifier" type="xs:string"/>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:redefine>
-	
-	<xs:redefine schemaLocation="point.xsd">
-		<xs:complexType name="point">
-			<xs:complexContent>
-				<xs:extension base="point">
-					<xs:attribute name="identifier" type="xs:string"/>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:redefine>
-	
-	<!-- ROOT GLYPH ELEMENT -->
+	<xs:include schemaLocation="component.xsd"/>
+	<xs:include schemaLocation="contour.xsd"/>
 	
 	<xs:element name="glyph">
 		<xs:complexType>
@@ -65,7 +32,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
-			<xs:attribute name="format" type="xs:decimal"/>
+			<xs:attribute name="format" type="xs:decimal" fixed="2"/>
 		</xs:complexType>
 	</xs:element>
 	

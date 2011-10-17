@@ -19,7 +19,7 @@
 				<xs:element name="lib" type="lib" minOccurs="0"/>
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:token"/>
-			<xs:attribute name="format" type="xs:decimal"/>
+			<xs:attribute name="format" type="xs:decimal" fixed="1"/>
 		</xs:complexType>
 	</xs:element>
 	

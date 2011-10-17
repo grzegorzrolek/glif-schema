@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:redefine schemaLocation="../GLIF1/component.xsd">
+		<xs:complexType name="component">
+			<xs:complexContent>
+				<xs:extension base="component">
+					<xs:attribute name="name" type="xs:string"/>
+					<xs:attribute name="identifier" type="xs:string"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:redefine>
+	
+</xs:schema>

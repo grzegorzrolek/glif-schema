@@ -3,7 +3,7 @@
 	
 	<xs:simpleType name="color">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="(0(\.\d+)?|1,\s*){3}0(\.\d+)?|1"/>
+			<xs:pattern value="^((0?(\.\d+)?|1(\.0+)?),\s*){3}(0?(\.\d+)?|1(\.0+)?)$"/>
 		</xs:restriction>
 	</xs:simpleType>
 	

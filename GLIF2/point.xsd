@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:redefine schemaLocation="../GLIF1/point.xsd">
+		<xs:complexType name="point">
+			<xs:complexContent>
+				<xs:extension base="point">
+					<xs:attribute name="identifier" type="xs:string"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:redefine>
+	
+</xs:schema>
