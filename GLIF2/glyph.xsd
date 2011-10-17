@@ -13,16 +13,18 @@
 	<xs:include schemaLocation="note.xsd"/>
 	<xs:include schemaLocation="component.xsd"/>
 	<xs:include schemaLocation="contour.xsd"/>
+	<xs:include schemaLocation="anchor.xsd"/>
 	
 	<xs:element name="glyph">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="advance" type="advance" minOccurs="0"/>
 				<xs:element name="unicode" type="unicode" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="note" type="note" minOccurs="0"/>
 				<xs:element name="image" type="image" minOccurs="0"/>
 				<xs:element name="guideline" type="guideline" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="anchor" type="anchor" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="outline" type="outline" minOccurs="0"/>
-				<xs:element name="note" type="note" minOccurs="0"/>
 				<xs:element name="lib" type="lib" minOccurs="0"/>	
 			</xs:sequence>
 			<xs:attribute name="name">
