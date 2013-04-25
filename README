@@ -10,9 +10,9 @@ Elements of both GLIF 1 & 2 Schemas are defined as independent, linked modules t
 
 THE LINT SCRIPT
 
-You can validate against the schema GLIF files in batches of whole UFO packages by running the lint shell script with paths to the packages as arguments.
+You can validate batches of GLIF files inside whole UFO packages against the schema by running the lint shell script with paths to the packages as arguments.
 
 
 CREDITS & COPYRIGHT NOTICE
 
-This work is not affiliated with the Unified Font Object format Authors nor the format itself. Copyright 2010 by Grzegorz Rolek.
+This work is done by Grzegorz Rolek. It is not affiliated with the Unified Font Object format authors, nor the format itself. Please see LICENSE for copyright and licensing details.
